@@ -4,15 +4,17 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projectsData, Project } from '@/data/projects';
 import { ProjectModal } from './ProjectModal';
-import { ArrowUpRight, Github, Sparkles, Globe, Zap } from 'lucide-react';
+import { ArrowUpRight, Github, Sparkles, Globe, Zap, LayoutGrid, Bot, Database, Eye, Cpu } from 'lucide-react';
+import { FilterTabs } from './ui/FilterTabs';
 
-const categories = [
-  'Tous',
-  'SIG & Géo-IA',
-  'GenAI & LLM',
-  'Data Engineering',
-  'Computer Vision & DL',
-  'Web & IoT',
+// Mêmes couleurs que les catégories de compétences correspondantes
+const categories: { id: string; label: string; icon: React.ReactNode; gradient: string }[] = [
+  { id: 'Tous', label: 'Tous', icon: <LayoutGrid />, gradient: 'from-cyan-500 to-blue-600' },
+  { id: 'SIG & Géo-IA', label: 'SIG & Géo-IA', icon: <Globe />, gradient: 'from-teal-500 to-cyan-600' },
+  { id: 'GenAI & LLM', label: 'GenAI & LLM', icon: <Bot />, gradient: 'from-cyan-500 to-blue-600' },
+  { id: 'Data Engineering', label: 'Data Eng.', icon: <Database />, gradient: 'from-blue-500 to-indigo-600' },
+  { id: 'Computer Vision & DL', label: 'Computer Vision', icon: <Eye />, gradient: 'from-purple-500 to-violet-600' },
+  { id: 'Web & IoT', label: 'Web & IoT', icon: <Cpu />, gradient: 'from-amber-500 to-orange-600' },
 ];
 
 export const Projects: React.FC = () => {
@@ -62,23 +64,15 @@ export const Projects: React.FC = () => {
         </div>
 
         {/* Category Filters */}
-        <div className="flex justify-center mb-12 overflow-x-auto pb-2 scrollbar-none">
-          <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800/80 backdrop-blur-xl">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
-                  selectedCategory === cat
-                    ? 'bg-cyan-500 text-slate-950 font-bold shadow-lg shadow-cyan-500/25'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
+        <FilterTabs
+          layoutId="projects-filter"
+          active={selectedCategory}
+          onChange={setSelectedCategory}
+          tabs={categories.map((c) => ({
+            ...c,
+            count: c.id === 'Tous' ? projectsData.length : projectsData.filter((p) => p.category === c.id).length,
+          }))}
+        />
 
         {/* Project Cards Grid */}
         <motion.div
@@ -180,7 +174,7 @@ export const Projects: React.FC = () => {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                      className="p-2 rounded-lg text-slate-400 hover:text-slate-50 hover:bg-slate-800 transition-colors"
                       title="Voir le code GitHub"
                     >
                       <Github className="w-4 h-4" />

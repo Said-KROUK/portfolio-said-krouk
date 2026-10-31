@@ -1,3 +1,13 @@
+const colors = require('tailwindcss/colors');
+
+// Couleurs pilotées par les variables CSS de app/globals.css (thèmes clair / sombre) :
+// toute la gamme slate s'inverse, et les accents 300/400 s'assombrissent en clair.
+const themed = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+const slate = Object.fromEntries(
+  [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].map((s) => [s, themed(`slate-${s}`)])
+);
+const accent = (hue) => ({ ...colors[hue], 300: themed(`${hue}-300`), 400: themed(`${hue}-400`) });
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -11,6 +21,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        slate,
+        amber: accent('amber'),
+        blue: accent('blue'),
+        cyan: accent('cyan'),
+        emerald: accent('emerald'),
+        purple: accent('purple'),
+        rose: accent('rose'),
+        sky: accent('sky'),
+        teal: accent('teal'),
         brand: {
           50: '#f0f9ff',
           100: '#e0f2fe',

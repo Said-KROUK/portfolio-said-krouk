@@ -4,8 +4,68 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Thème clair (par défaut sans la classe .dark) — généré depuis la palette Tailwind */
 :root {
+  color-scheme: light;
+  --slate-50: 2 6 23;
+  --slate-100: 15 23 42;
+  --slate-200: 30 41 59;
+  --slate-300: 51 65 85;
+  --slate-400: 71 85 105;
+  --slate-500: 100 116 139;
+  --slate-600: 148 163 184;
+  --slate-700: 203 213 225;
+  --slate-800: 226 232 240;
+  --slate-900: 241 245 249;
+  --slate-950: 248 250 252;
+  --amber-300: 180 83 9;
+  --amber-400: 217 119 6;
+  --blue-300: 29 78 216;
+  --blue-400: 37 99 235;
+  --cyan-300: 14 116 144;
+  --cyan-400: 8 145 178;
+  --emerald-300: 4 120 87;
+  --emerald-400: 5 150 105;
+  --purple-300: 126 34 206;
+  --purple-400: 147 51 234;
+  --rose-300: 190 18 60;
+  --rose-400: 225 29 72;
+  --sky-300: 3 105 161;
+  --sky-400: 2 132 199;
+  --teal-300: 15 118 110;
+  --teal-400: 13 148 136;
+}
+
+/* Thème sombre */
+.dark {
   color-scheme: dark;
+  --slate-50: 248 250 252;
+  --slate-100: 241 245 249;
+  --slate-200: 226 232 240;
+  --slate-300: 203 213 225;
+  --slate-400: 148 163 184;
+  --slate-500: 100 116 139;
+  --slate-600: 71 85 105;
+  --slate-700: 51 65 85;
+  --slate-800: 30 41 59;
+  --slate-900: 15 23 42;
+  --slate-950: 2 6 23;
+  --amber-300: 252 211 77;
+  --amber-400: 251 191 36;
+  --blue-300: 147 197 253;
+  --blue-400: 96 165 250;
+  --cyan-300: 103 232 249;
+  --cyan-400: 34 211 238;
+  --emerald-300: 110 231 183;
+  --emerald-400: 52 211 153;
+  --purple-300: 216 180 254;
+  --purple-400: 192 132 252;
+  --rose-300: 253 164 175;
+  --rose-400: 251 113 133;
+  --sky-300: 125 211 252;
+  --sky-400: 56 189 248;
+  --teal-300: 94 234 212;
+  --teal-400: 45 212 191;
 }
 
 html {
@@ -14,9 +74,10 @@ html {
 }
 
 body {
-  background-color: #030712;
-  color: #f8fafc;
+  background-color: rgb(var(--slate-950));
+  color: rgb(var(--slate-50));
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Scrollbar */
@@ -26,11 +87,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: rgb(var(--slate-950));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: rgb(var(--slate-800));
   border-radius: 4px;
 }
 
@@ -43,12 +104,27 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: rgb(var(--slate-700));
   border-radius: 3px;
+}
+
+/* Défilement sans barre visible (barres de filtres sur mobile) */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /* Selection Highlight */
 ::selection {
-  background: rgba(0, 240, 255, 0.25);
-  color: #00f0ff;
+  background: rgba(14, 165, 233, 0.25);
+  color: rgb(var(--cyan-400));
+}
+
+/* La grille de fond est blanche : en thème clair on l'assombrit */
+:root:not(.dark) .bg-cyber-grid {
+  background-image: linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
 }

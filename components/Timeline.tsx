@@ -55,7 +55,7 @@ export const Timeline: React.FC = () => {
               className={`px-6 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                 activeTab === 'experiences'
                   ? 'bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/25'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                  : 'text-slate-400 hover:text-slate-50 hover:bg-slate-800/50'
               }`}
             >
               <Briefcase className="w-4 h-4" />
@@ -67,7 +67,7 @@ export const Timeline: React.FC = () => {
               className={`px-6 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                 activeTab === 'education'
                   ? 'bg-purple-500 text-slate-950 shadow-lg shadow-purple-500/25'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                  : 'text-slate-400 hover:text-slate-50 hover:bg-slate-800/50'
               }`}
             >
               <GraduationCap className="w-4 h-4" />

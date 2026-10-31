@@ -1,6 +1,7 @@
 export interface SkillCategory {
   id: string;
   title: string;
+  shortTitle: string;
   iconName: string;
   gradient: string;
   badgeColor: string;
@@ -12,6 +13,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "sig",
     title: "SIG & Géo-IA",
+    shortTitle: "SIG & Géo-IA",
     iconName: "Globe",
     gradient: "from-teal-500 to-cyan-600",
     badgeColor: "bg-teal-500/10 text-teal-400 border-teal-500/30",
@@ -28,6 +30,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "de",
     title: "Data Engineering & Big Data",
+    shortTitle: "Data Eng.",
     iconName: "Database",
     gradient: "from-blue-500 to-indigo-600",
     badgeColor: "bg-blue-500/10 text-blue-400 border-blue-500/30",
@@ -44,6 +47,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "cloud",
     title: "Cloud & Bases de Données",
+    shortTitle: "Cloud & BDD",
     iconName: "Cloud",
     gradient: "from-sky-500 to-blue-600",
     badgeColor: "bg-sky-500/10 text-sky-400 border-sky-500/30",
@@ -59,6 +63,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "ml",
     title: "ML, Deep Learning & Computer Vision",
+    shortTitle: "ML & Vision",
     iconName: "Eye",
     gradient: "from-purple-500 to-violet-600",
     badgeColor: "bg-purple-500/10 text-purple-400 border-purple-500/30",
@@ -74,6 +79,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "genai",
     title: "IA Générative, LLMs & NLP",
+    shortTitle: "GenAI & LLM",
     iconName: "Bot",
     gradient: "from-cyan-500 to-blue-600",
     badgeColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30",
@@ -89,6 +95,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "mlops",
     title: "MLOps, Infrastructure & Dev",
+    shortTitle: "MLOps",
     iconName: "Server",
     gradient: "from-emerald-500 to-teal-600",
     badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
@@ -104,6 +111,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "bi",
     title: "Business Intelligence & Visualisation",
+    shortTitle: "BI & Dataviz",
     iconName: "BarChart3",
     gradient: "from-rose-500 to-pink-600",
     badgeColor: "bg-rose-500/10 text-rose-400 border-rose-500/30",

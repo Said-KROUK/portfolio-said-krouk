@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { skillCategories } from '@/data/skills';
-import { Bot, Eye, Database, Server, Cpu, BarChart3, Globe, Cloud, CheckCircle2, Sparkles } from 'lucide-react';
+import { Bot, Eye, Database, Server, Cpu, BarChart3, Globe, Cloud, CheckCircle2, Sparkles, LayoutGrid } from 'lucide-react';
+import { FilterTabs } from './ui/FilterTabs';
 
 const iconMap: Record<string, React.ReactNode> = {
   Globe: <Globe className="w-5 h-5" />,
@@ -61,34 +62,26 @@ export const Skills: React.FC = () => {
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="flex justify-center mb-12 overflow-x-auto pb-2 scrollbar-none">
-          <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800/80 backdrop-blur-xl">
-            <button
-              onClick={() => setActiveCategory('all')}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
-                activeCategory === 'all'
-                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-lg shadow-cyan-500/25'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-              }`}
-            >
-              Toutes les compétences
-            </button>
-            {skillCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 whitespace-nowrap ${
-                  activeCategory === category.id
-                    ? 'bg-cyan-500 text-slate-950 font-bold shadow-lg shadow-cyan-500/25'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-                }`}
-              >
-                <span>{iconMap[category.iconName]}</span>
-                <span>{category.title}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+        <FilterTabs
+          layoutId="skills-filter"
+          active={activeCategory}
+          onChange={setActiveCategory}
+          tabs={[
+            {
+              id: 'all',
+              label: 'Tout',
+              icon: <LayoutGrid />,
+              count: skillCategories.reduce((n, c) => n + c.skills.length, 0),
+            },
+            ...skillCategories.map((c) => ({
+              id: c.id,
+              label: c.shortTitle,
+              icon: iconMap[c.iconName],
+              count: c.skills.length,
+              gradient: c.gradient,
+            })),
+          ]}
+        />
 
         {/* Skills Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
